@@ -6,11 +6,6 @@ dist: trusty
 r_github_packages:
   - jimhester/covr
 
-r:
-  - oldrel
-  - release
-  - devel
-
 after_success:
   - Rscript -e 'covr::codecov()'
 
