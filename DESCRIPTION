@@ -17,7 +17,7 @@ Imports:
 Suggests:
     roxygen2 (>= 6.0.1),
     testthat,
-    webmockr (>= 0.2.0),
-    vcr (>= 0.0.7.9310)
-Remotes: ropensci/vcr
+    webmockr (>= 0.2.1.9222),
+    vcr (>= 0.0.7.9314)
+Remotes: ropensci/vcr@webmockit, ropensci/webmockr
 RoxygenNote: 6.0.1
