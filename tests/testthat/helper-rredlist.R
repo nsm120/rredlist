@@ -1,5 +1,3 @@
-library("testthat")
-test_check("rredlist")
-
+# set up vcr
 library("vcr")
 invisible(vcr::vcr_configure(dir = "../fixtures/vcr_cassettes"))

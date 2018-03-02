@@ -1,0 +1,33 @@
+http_interactions:
+- request:
+    method: get
+    uri: http://apiv3.iucnredlist.org/api/v3/measures/species/id/22694927/region/3wer?token=bfad704e2dc10e81ef289d81edae67217a665d088b67db45172375304ec9659a
+    body:
+      encoding: ''
+      string: ''
+    headers:
+      User-Agent: r-curl/3.1 crul/0.5.2 rOpenSci(rredlist/0.4.0.9110)
+      Accept-Encoding: gzip, deflate
+      Accept: application/json, text/xml, application/xml, */*
+  response:
+    status:
+      status_code: '200'
+      message: OK
+      explanation: Request fulfilled, document follows
+    headers:
+      status: HTTP/1.1 200 OK
+      server: nginx/1.1.19
+      date: Fri, 02 Mar 2018 22:09:36 GMT
+      content-type: application/json; charset=utf-8
+      content-length: '90'
+      connection: keep-alive
+      x-powered-by: Sails <sailsjs.org>
+      set-cookie: sails.sid=s%3AV3hNVactZHpUIzswbOHjMw2O.5j6NOKDb2BdjONAZNS33PbURx%2BsZvo3TWAsrcZhEQas;
+        Path=/; HttpOnly
+      vary: Accept-Encoding
+    body:
+      encoding: UTF-8
+      string: '{"error":"Region not found. If you require assistance, please refer
+        to the contact page."}'
+  recorded_at: 2018-03-02 22:09:36 GMT
+  recorded_with: vcr/0.0.7.9314

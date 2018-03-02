@@ -3,25 +3,29 @@ context("rl_search functions")
 test_that("high level works - parsing", {
   skip_on_cran()
 
-  aa <- rl_search('Fratercula arctica')
+  vcr::use_cassette("rl_search_parsing", {
+    aa <- rl_search('Fratercula arctica')
 
-  expect_is(aa, "list")
-  expect_named(aa, c("name", "result"))
-  expect_is(aa$name, "character")
-  expect_is(aa$result, "data.frame")
-  expect_true(any(grepl("arctica", aa$result$scientific_name, ignore.case = TRUE)))
+    expect_is(aa, "list")
+    expect_named(aa, c("name", "result"))
+    expect_is(aa$name, "character")
+    expect_is(aa$result, "data.frame")
+    expect_true(any(grepl("arctica", aa$result$scientific_name, ignore.case = TRUE)))
+  })
 })
 
 test_that("high level works - not parsing", {
   skip_on_cran()
 
-  aa <- rl_search('Fratercula arctica', parse = FALSE)
+  vcr::use_cassette("rl_search_not_parsing", {
+    aa <- rl_search('Fratercula arctica', parse = FALSE)
 
-  expect_is(aa, "list")
-  expect_named(aa, c("name", "result"))
-  expect_is(aa$name, "character")
-  expect_is(aa$result, "list")
-  expect_true(any(grepl("arctica", vapply(aa$result, "[[", "", "scientific_name"), ignore.case = TRUE)))
+    expect_is(aa, "list")
+    expect_named(aa, c("name", "result"))
+    expect_is(aa$name, "character")
+    expect_is(aa$result, "list")
+    expect_true(any(grepl("arctica", vapply(aa$result, "[[", "", "scientific_name"), ignore.case = TRUE)))
+  })
 })
 
 test_that("low level works", {
@@ -29,22 +33,26 @@ test_that("low level works", {
 
   library("jsonlite")
 
-  aa <- rl_search_('Fratercula arctica')
-  aajson <- jsonlite::fromJSON(aa)
+  vcr::use_cassette("rl_search_low_level", {
+    aa <- rl_search_('Fratercula arctica')
+    aajson <- jsonlite::fromJSON(aa)
 
-  expect_is(aa, "character")
-  expect_is(aajson, "list")
-  expect_named(aajson, c("name", "result"))
+    expect_is(aa, "character")
+    expect_is(aajson, "list")
+    expect_named(aajson, c("name", "result"))
+  })
 })
 
 test_that("no results", {
   skip_on_cran()
 
-  aa <- rl_search('Loxodonta asdfadf')
+  vcr::use_cassette("rl_search_no_results", {
+      aa <- rl_search('Loxodonta asdfadf')
 
-  expect_is(aa, "list")
-  expect_is(aa$result, "list")
-  expect_equal(length(aa$result), 0)
+    expect_is(aa, "list")
+    expect_is(aa$result, "list")
+    expect_equal(length(aa$result), 0)
+  })
 })
 
 test_that("fails well", {
@@ -70,4 +78,3 @@ test_that("fails well", {
   expect_error(rl_search(id = 1:2), "id must be length 1")
   expect_error(rl_search(letters[1], region = letters[1:2]), "region must be length 1")
 })
-

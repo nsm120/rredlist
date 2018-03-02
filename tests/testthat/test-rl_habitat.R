@@ -3,25 +3,29 @@ context("rl_habitats functions")
 test_that("high level works - parsing", {
   skip_on_cran()
 
-  aa <- rl_habitats('Fratercula arctica')
+  vcr::use_cassette("rl_habitats_parsing", {
+    aa <- rl_habitats('Fratercula arctica')
 
-  expect_is(aa, "list")
-  expect_named(aa, c("name", "result"))
-  expect_is(aa$name, "character")
-  expect_is(aa$result, "data.frame")
-  expect_true(any(grepl("breeding", aa$result$season, ignore.case = TRUE)))
+    expect_is(aa, "list")
+    expect_named(aa, c("name", "result"))
+    expect_is(aa$name, "character")
+    expect_is(aa$result, "data.frame")
+    expect_true(any(grepl("breeding", aa$result$season, ignore.case = TRUE)))
+  })
 })
 
 test_that("high level works - not parsing", {
   skip_on_cran()
 
-  aa <- rl_habitats('Fratercula arctica', parse = FALSE)
+  vcr::use_cassette("rl_habitats_not_parsing", {
+    aa <- rl_habitats('Fratercula arctica', parse = FALSE)
 
-  expect_is(aa, "list")
-  expect_named(aa, c("name", "result"))
-  expect_is(aa$name, "character")
-  expect_is(aa$result, "list")
-  expect_true(any(grepl("breeding", vapply(aa$result, "[[", "", "season"), ignore.case = TRUE)))
+    expect_is(aa, "list")
+    expect_named(aa, c("name", "result"))
+    expect_is(aa$name, "character")
+    expect_is(aa$result, "list")
+    expect_true(any(grepl("breeding", vapply(aa$result, "[[", "", "season"), ignore.case = TRUE)))
+  })
 })
 
 test_that("low level works", {
@@ -29,22 +33,26 @@ test_that("low level works", {
 
   library("jsonlite")
 
-  aa <- rl_habitats_('Fratercula arctica')
-  aajson <- jsonlite::fromJSON(aa)
+  vcr::use_cassette("rl_habitats_low_level", {
+    aa <- rl_habitats_('Fratercula arctica')
+    aajson <- jsonlite::fromJSON(aa)
 
-  expect_is(aa, "character")
-  expect_is(aajson, "list")
-  expect_named(aajson, c("name", "result"))
+    expect_is(aa, "character")
+    expect_is(aajson, "list")
+    expect_named(aajson, c("name", "result"))
+  })
 })
 
 test_that("no results", {
   skip_on_cran()
 
-  aa <- rl_habitats('Loxodonta asdfadf')
+  vcr::use_cassette("rl_habitats_no_results", {
+    aa <- rl_habitats('Loxodonta asdfadf')
 
-  expect_is(aa, "list")
-  expect_is(aa$result, "list")
-  expect_equal(length(aa$result), 0)
+    expect_is(aa, "list")
+    expect_is(aa$result, "list")
+    expect_equal(length(aa$result), 0)
+  })
 })
 
 test_that("fails well", {

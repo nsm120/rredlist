@@ -3,23 +3,27 @@ context("rl_countries functions")
 test_that("high level works - parsing", {
   skip_on_cran()
 
-  aa <- rl_countries()
+  vcr::use_cassette("rl_countries_parsing", {
+    aa <- rl_countries()
 
-  expect_is(aa, "list")
-  expect_type(aa$count, "integer")
-  expect_is(aa$results, "data.frame")
-  expect_true(any(grepl("Egypt", aa$results$country, ignore.case = TRUE)))
+    expect_is(aa, "list")
+    expect_type(aa$count, "integer")
+    expect_is(aa$results, "data.frame")
+    expect_true(any(grepl("Egypt", aa$results$country, ignore.case = TRUE)))
+  })
 })
 
 test_that("high level works - not parsing", {
   skip_on_cran()
 
-  aa <- rl_countries(parse = FALSE)
+  vcr::use_cassette("rl_countries_not_parsing", {
+    aa <- rl_countries(parse = FALSE)
 
-  expect_is(aa, "list")
-  expect_type(aa$count, "integer")
-  expect_is(aa$results, "list")
-  expect_true(any(grepl("Egypt", vapply(aa$results, "[[", "", "country"), ignore.case = TRUE)))
+    expect_is(aa, "list")
+    expect_type(aa$count, "integer")
+    expect_is(aa$results, "list")
+    expect_true(any(grepl("Egypt", vapply(aa$results, "[[", "", "country"), ignore.case = TRUE)))
+  })
 })
 
 test_that("low level works", {
@@ -27,10 +31,12 @@ test_that("low level works", {
 
   library("jsonlite")
 
-  aa <- rl_countries_()
+  vcr::use_cassette("rl_countries_low_level", {
+    aa <- rl_countries_()
 
-  expect_is(aa, "character")
-  expect_is(jsonlite::fromJSON(aa), "list")
+    expect_is(aa, "character")
+    expect_is(jsonlite::fromJSON(aa), "list")
+  })
 })
 
 test_that("fails well", {
@@ -42,4 +48,3 @@ test_that("fails well", {
   expect_error(rl_countries(parse = 5), "parse must be of class logical")
   expect_error(rl_countries(parse = matrix()), "parse must be of class logical")
 })
-

@@ -3,10 +3,12 @@ context("package fails well")
 test_that("fails well on bad key", {
   skip_on_cran()
 
-  expect_error(rl_common_names('Loxodonta africana', key = "adfds"),
-               "Token not valid!")
-  expect_error(rl_common_names_('Loxodonta africana', key = "adfds"),
-               "Token not valid")
+  vcr::use_cassette("fails_well_one", {
+    expect_error(rl_common_names('Loxodonta africana', key = "adfds"),
+                 "Token not valid!")
+    expect_error(rl_common_names_('Loxodonta africana', key = "adfds"),
+                 "Token not valid")
+  })
 })
 
 test_that("fails well when correct parameters not given", {
@@ -23,16 +25,20 @@ test_that("fails well when an invalid region passed", {
 
   expect_error(rl_habitats(id = 22694927, region = 34234),
                "region must be of class character")
-  expect_error(rl_habitats_(id = 22694927, region = '34234'),
-               "Region not found.")
 
   expect_error(rl_search(id = 22694927, region = 2727343),
                "region must be of class character")
-  expect_error(rl_search_(id = 22694927, region = '3wer'),
-               "Region not found.")
 
   expect_error(rl_measures(id = 22694927, region = 12345),
                "region must be of class character")
-  expect_error(rl_measures_(id = 22694927, region = '3wer'),
-               "Region not found.")
+
+  vcr::use_cassette("fails_well_two", {
+    expect_error(rl_habitats_(id = 22694927, region = '34234'),
+                 "Region not found.")
+    expect_error(rl_search_(id = 22694927, region = '3wer'),
+                 "Region not found.")
+    expect_error(rl_measures_(id = 22694927, region = '3wer'),
+                 "Region not found.")
+  })
+  
 })

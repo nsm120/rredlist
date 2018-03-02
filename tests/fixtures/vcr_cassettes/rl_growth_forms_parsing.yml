@@ -1,0 +1,32 @@
+http_interactions:
+- request:
+    method: get
+    uri: http://apiv3.iucnredlist.org/api/v3/growth_forms/species/name/Quercus%20robur?token=bfad704e2dc10e81ef289d81edae67217a665d088b67db45172375304ec9659a
+    body:
+      encoding: ''
+      string: ''
+    headers:
+      User-Agent: r-curl/3.1 crul/0.5.2 rOpenSci(rredlist/0.4.0.9110)
+      Accept-Encoding: gzip, deflate
+      Accept: application/json, text/xml, application/xml, */*
+  response:
+    status:
+      status_code: '200'
+      message: OK
+      explanation: Request fulfilled, document follows
+    headers:
+      status: HTTP/1.1 200 OK
+      server: nginx/1.1.19
+      date: Fri, 02 Mar 2018 22:08:21 GMT
+      content-type: application/json; charset=utf-8
+      content-length: '59'
+      connection: keep-alive
+      x-powered-by: Sails <sailsjs.org>
+      set-cookie: sails.sid=s%3AbJ77M5Ms41I4NAtdCYFWxUvY.X9TN0SG3b91v6YZIh1xuhjgtRwIfS2iX%2BXGpp2pYQRA;
+        Path=/; HttpOnly
+      vary: Accept-Encoding
+    body:
+      encoding: UTF-8
+      string: '{"name":"Quercus robur","result":[{"name":"Tree - large"}]}'
+  recorded_at: 2018-03-02 22:08:21 GMT
+  recorded_with: vcr/0.0.7.9314

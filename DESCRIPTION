@@ -4,7 +4,7 @@ Title: 'IUCN' Red List Client
 Description: 'IUCN' Red List (<http://apiv3.iucnredlist.org/api/v3/docs>) client.
     The 'IUCN' Red List is a global list of threatened and endangered species.
     Functions cover all of the Red List 'API' routes. An 'API' key is required.
-Version: 0.4.0.9100
+Version: 0.4.0.9110
 Authors@R: c(person("Scott", "Chamberlain", role = c("aut", "cre"),
     email = "myrmecocystus@gmail.com"))
 License: MIT + file LICENSE
@@ -16,5 +16,8 @@ Imports:
     jsonlite (>= 1.1)
 Suggests:
     roxygen2 (>= 6.0.1),
-    testthat
+    testthat,
+    webmockr (>= 0.2.0),
+    vcr (>= 0.0.7.9310)
+Remotes: ropensci/vcr
 RoxygenNote: 6.0.1

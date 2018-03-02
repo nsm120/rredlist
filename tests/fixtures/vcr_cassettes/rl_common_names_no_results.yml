@@ -1,0 +1,32 @@
+http_interactions:
+- request:
+    method: get
+    uri: http://apiv3.iucnredlist.org/api/v3/species/common_names/Loxodonta%20asdfadf?token=bfad704e2dc10e81ef289d81edae67217a665d088b67db45172375304ec9659a
+    body:
+      encoding: ''
+      string: ''
+    headers:
+      User-Agent: r-curl/3.1 crul/0.5.2 rOpenSci(rredlist/0.4.0.9110)
+      Accept-Encoding: gzip, deflate
+      Accept: application/json, text/xml, application/xml, */*
+  response:
+    status:
+      status_code: '200'
+      message: OK
+      explanation: Request fulfilled, document follows
+    headers:
+      status: HTTP/1.1 200 OK
+      server: nginx/1.1.19
+      date: Fri, 02 Mar 2018 21:25:51 GMT
+      content-type: application/json; charset=utf-8
+      content-length: '40'
+      connection: keep-alive
+      x-powered-by: Sails <sailsjs.org>
+      set-cookie: sails.sid=s%3AyNMW989ArkB9BXer0uTjHKqb.eAZnyhyrtF5zpNTJFarlrlmnMjqVopAF%2FdxdBVFL1XU;
+        Path=/; HttpOnly
+      vary: Accept-Encoding
+    body:
+      encoding: UTF-8
+      string: '{"name":"Loxodonta asdfadf","result":[]}'
+  recorded_at: 2018-03-02 21:25:51 GMT
+  recorded_with: vcr/0.0.7.9314

@@ -1,0 +1,35 @@
+http_interactions:
+- request:
+    method: get
+    uri: http://apiv3.iucnredlist.org/api/v3/species/Fratercula%20arctica?token=bfad704e2dc10e81ef289d81edae67217a665d088b67db45172375304ec9659a
+    body:
+      encoding: ''
+      string: ''
+    headers:
+      User-Agent: r-curl/3.1 crul/0.5.2 rOpenSci(rredlist/0.4.0.9110)
+      Accept-Encoding: gzip, deflate
+      Accept: application/json, text/xml, application/xml, */*
+  response:
+    status:
+      status_code: '200'
+      message: OK
+      explanation: Request fulfilled, document follows
+    headers:
+      status: HTTP/1.1 200 OK
+      server: nginx/1.1.19
+      date: Fri, 02 Mar 2018 22:09:42 GMT
+      content-type: application/json; charset=utf-8
+      content-length: '683'
+      connection: keep-alive
+      x-powered-by: Sails <sailsjs.org>
+      set-cookie: sails.sid=s%3A35rU9lk_3p0RQB5MHEggq7_4.yaS87ik9avOtw4CgXQy4nc8hKbtzVpLTrsDIxZn0QKg;
+        Path=/; HttpOnly
+      vary: Accept-Encoding
+    body:
+      encoding: UTF-8
+      string: '{"name":"Fratercula arctica","result":[{"taxonid":22694927,"scientific_name":"Fratercula
+        arctica","kingdom":"ANIMALIA","phylum":"CHORDATA","class":"AVES","order":"CHARADRIIFORMES","family":"ALCIDAE","genus":"Fratercula","main_common_name":"Atlantic
+        Puffin","authority":"(Linnaeus, 1758)","published_year":2017,"category":"VU","criteria":"A4abcde","marine_system":true,"freshwater_system":false,"terrestrial_system":true,"assessor":"BirdLife
+        International","reviewer":"Symes, A.","aoo_km2":null,"eoo_km2":"20800000","elevation_upper":null,"elevation_lower":null,"depth_upper":null,"depth_lower":null,"errata_flag":null,"errata_reason":null,"amended_flag":null,"amended_reason":null}]}'
+  recorded_at: 2018-03-02 22:09:43 GMT
+  recorded_with: vcr/0.0.7.9314
